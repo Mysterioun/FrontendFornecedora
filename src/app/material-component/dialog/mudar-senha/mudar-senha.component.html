@@ -1,0 +1,59 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span>Mudar Senha</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="changePasswordForm">
+        <div fxFlex fxLayout="column">
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Senha Antiga</mat-label>
+                <input matInput formControlName="senhaAntiga" type="password" required [type]="senhaAntiga ? 'password' : 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="senhaAntiga = !senhaAntiga" [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="senhaAntiga">
+                    <mat-icon>{{senhaAntiga ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="changePasswordForm.controls.senhaAntiga.touched && changePasswordForm.controls.senhaAntiga.invalid">
+                    <span *ngIf="changePasswordForm.controls.senhaAntiga.errors.required">Esse campo é obrigatório.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Senha Nova</mat-label>
+                <input matInput formControlName="senhaNova" type="password" required [type]="senhaNova ? 'password' : 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="senhaNova = !senhaNova" [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="senhaNova">
+                    <mat-icon>{{senhaNova ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="changePasswordForm.controls.senhaNova.touched && changePasswordForm.controls.senhaNova.invalid">
+                    <span *ngIf="changePasswordForm.controls.senhaNova.errors.required">Esse campo é obrigatório.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Confirmar Senha</mat-label>
+                <input matInput formControlName="confirmSenha" type="password" required [type]="confirmSenha ? 'password' : 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="confirmSenha = !confirmSenha" [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="confirmSenha">
+                    <mat-icon>{{confirmSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="changePasswordForm.controls.confirmSenha.touched && changePasswordForm.controls.confirmSenha.invalid">
+                    <span *ngIf="changePasswordForm.controls.confirmSenha.errors.required">Esse campo é obrigatório.</span>
+                </mat-error>
+                <mat-hint *ngIf="validateSubmit() && !(changePasswordForm.controls.confirmSenha.invalid)">
+                    <span>As senhas não são identicas.</span>
+                </mat-hint>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handlepasswordChangeSubmit()" (click)="refresh()"
+    [disabled]="validateSubmit() || !(changePasswordForm.valid && changePasswordForm.dirty)">
+        <mat-icon>save</mat-icon>Editar
+    </button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon>Fechar</button>
+</mat-dialog-actions>

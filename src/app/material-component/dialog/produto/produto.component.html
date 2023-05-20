@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span>{{dialogData.action}} Produto</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="produtoForm">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="standard" fxFlex>
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="nome" required>
+                    <mat-error *ngIf="produtoForm.controls.nome.touched && produtoForm.controls.nome.invalid">
+                        <span *ngIf="produtoForm.controls.nome.errors.required">Esse espaço é obrigatório.</span>
+                        <span *ngIf="produtoForm.controls.nome.errors.pattern">Dado inválido.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="standard" fxFlex>
+                    <mat-label>Preço</mat-label>
+                    <input matInput formControlName="preco" required>
+                    <mat-error *ngIf="produtoForm.controls.preco.touched && produtoForm.controls.preco.invalid">
+                        <span *ngIf="produtoForm.controls.preco.errors.required">Esse espaço é obrigatório.</span>
+                        <span *ngIf="produtoForm.controls.preco.errors.pattern">Dado inválido.</span>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="standard" fxFlex>
+                    <mat-label>Categoria</mat-label>
+                    <mat-select formControlName="categoriaId">
+                        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                            {{categoria.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> 
+            </div>
+            
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="standard" fxFlex>
+                    <mat-label>Descrição</mat-label>
+                    <input matInput formControlName="descricao" required>
+                    <mat-error *ngIf="produtoForm.controls.descricao.touched && produtoForm.controls.descricao.invalid">
+                        <span *ngIf="produtoForm.controls.descricao.errors.required">Esse espaço é obrigatório.</span>
+                        <span *ngIf="produtoForm.controls.descricao.errors.pattern">Dado inválido.</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" (click)="refresh()" [disabled]="!(produtoForm.valid && produtoForm.dirty)">
+        <mat-icon>save</mat-icon>{{action}}
+    </button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon>Fechar</button>
+</mat-dialog-actions>

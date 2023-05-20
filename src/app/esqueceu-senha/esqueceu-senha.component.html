@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span>Esqueceu Senha</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="esqueceuSenhaForm">
+        <div fxFlex fxLayout="column">
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="esqueceuSenhaForm.controls.email.touched && esqueceuSenhaForm.controls.email.invalid">
+                    <span *ngIf="esqueceuSenhaForm.controls.email.errors.required">Esse campo é obrigatório</span>
+                    <span *ngIf="esqueceuSenhaForm.controls.email.errors.pattern">Email invalido</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" [disabled]="!(esqueceuSenhaForm.valid && esqueceuSenhaForm.dirty)">
+        <mat-icon>send</mat-icon>Enviar Senha
+    </button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon>Fechar</button>
+</mat-dialog-actions>
+

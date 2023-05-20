@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Arial');
+
+body {
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section-heading {
+  color: #333;
+  font-size: 30px;
+  margin-bottom: 30px;
+  font-weight: bold; 
+
+}
+
+.timeline {
+  list-style-type: none;
+  position: relative;
+  padding: 0;
+  margin-top: 40px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #333;
+    left: 50%;
+    margin-left: -1px;
+  }
+
+  li {
+    position: relative;
+    min-height: 150px;
+    margin-bottom: 150px;
+    display: flex;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+    }
+
+    .timeline-image {
+      flex: 0 0 150px;
+      text-align: center;
+      background-color: #fff;
+      border: 7px solid #333;
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin-right: 50px;
+
+      img {
+        border-radius: 50%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    .timeline-panel {
+      flex: 1;
+      padding: 30px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+      h4 {
+        color: #333;
+        font-size: 24px;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
+
+      p {
+        color: #777;
+
+        &.text-muted {
+          margin-bottom: 0;
+        }
+      }
+
+      .timeline-heading h4,
+      .timeline-heading h4 a {
+        color: #000000;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &.timeline-inverted {
+      flex-direction: row-reverse;
+
+      .timeline-image {
+        margin-right: 0;
+        margin-left: 50px;
+      }
+    }
+
+    &.timeline-panel-final {
+      width: 100%;
+      padding-left: 30px;
+      padding-right: 30px;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+}

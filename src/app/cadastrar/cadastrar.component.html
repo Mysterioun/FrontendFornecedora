@@ -1,0 +1,80 @@
+<script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.6/dist/inputmask.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.6/dist/jquery.inputmask.min.js"></script>
+  
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span>Cadastrar</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="cadastrarForm">
+        <div fxFlex fxLayout="column">
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" required>
+                <mat-error *ngIf="cadastrarForm.controls.nome.touched && cadastrarForm.controls.nome.invalid">
+                    <span *ngIf="cadastrarForm.controls.nome.errors.required">Esse campo é obrigatório.</span>
+                    <span *ngIf="cadastrarForm.controls.nome.errors.pattern">Nome invalido.</span>
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Numero de Contato</mat-label>
+                <input matInput id="numeroContato" formControlName="numeroContato" required>
+                <mat-error *ngIf="cadastrarForm.controls.numeroContato.touched && cadastrarForm.controls.numeroContato.invalid">
+                    <span *ngIf="cadastrarForm.controls.numeroContato.errors.required">Esse campo é obrigatório.</span>
+                    <span *ngIf="cadastrarForm.controls.numeroContato.errors.pattern">Numero de Contato invalido.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="cadastrarForm.controls.email.touched && cadastrarForm.controls.email.invalid">
+                    <span *ngIf="cadastrarForm.controls.email.errors.required">Esse campo é obrigatório.</span>
+                    <span *ngIf="cadastrarForm.controls.email.errors.pattern">Email invalido.</span>
+                </mat-error>
+            </mat-form-field>
+ 
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Senha</mat-label>
+                <input matInput formControlName="senha" type="password" required [type]="password ? 'password': 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="password = !password" [attr.aria-label] = "'Hide password'" [attr.aria-pressed]="password">
+                    <mat-icon>{{password ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="cadastrarForm.controls.senha.touched && cadastrarForm.controls.senha.invalid">
+                    <span *ngIf="cadastrarForm.controls.senha.errors.required">Esse campo é obrigatório.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" fxFlex>
+                <mat-label>Confirmar Senha</mat-label>
+                <input matInput formControlName="confirmarSenha" type="password" required [type]="confirmPassword ? 'password': 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="confirmPassword = !confirmPassword" [attr.aria-label] = "'Hide password'" [attr.aria-pressed]="confirmPassword">
+                    <mat-icon>{{confirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="cadastrarForm.controls.confirmarSenha.touched && cadastrarForm.controls.confirmarSenha.invalid">
+                    <span *ngIf="cadastrarForm.controls.confirmarSenha.errors.required">Esse campo é obrigatório.</span>
+                </mat-error>
+                <mat-hint *ngIf="validateSubmit() && !(cadastrarForm.controls.confirmarSenha.invalid)">
+                    <span>As senhas não são identicas.</span>
+                </mat-hint>
+            </mat-form-field>
+            
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" (click)="refresh()" [disabled]="validateSubmit() || !(cadastrarForm.valid && cadastrarForm.dirty)">
+        <mat-icon>save</mat-icon> Cadastrar
+    </button>
+    <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon>Fechar</button>
+</mat-dialog-actions>
