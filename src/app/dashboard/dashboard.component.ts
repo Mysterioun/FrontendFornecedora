@@ -31,8 +31,8 @@ export class DashboardComponent implements AfterViewInit {
 		},(error: any)=>{
 			this.ngxService.stop();
 			console.log(error);
-			if(error.error?.message){
-				this.responseMessage = error.error?.message;
+			if(error.error?.Mensagem){
+				this.responseMessage = error.error?.Mensagem;
 			}
 			else{
 				this.responseMessage = GlobalConstants.erroGenerico;

@@ -66,8 +66,8 @@ export class AdministrarPedidoComponent implements OnInit {
     },(error:any)=>{
       this.ngxService.stop();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -85,8 +85,8 @@ export class AdministrarPedidoComponent implements OnInit {
       this.administrarPedidoForm.controls['total'].setValue(0);
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -104,8 +104,8 @@ export class AdministrarPedidoComponent implements OnInit {
       this.administrarPedidoForm.controls['total'].setValue(this.preco * 1);    
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -189,8 +189,8 @@ export class AdministrarPedidoComponent implements OnInit {
       this.totalAmount = 0;
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -225,8 +225,8 @@ export class AdministrarPedidoComponent implements OnInit {
       this.administrarPedidoForm.controls['numeroContato'].setValue(this.usuario.numeroContato);
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;

@@ -25,9 +25,4 @@ export class ConfirmationComponent implements OnInit {
   handleChangeAction(){
     this.onEmitStatusChange.emit();
   }
-  
-  refresh(): void {
-    window.location.reload();
-}
-  
 }
