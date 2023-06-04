@@ -42,8 +42,8 @@ export class VisualizarVendaComponent implements OnInit {
     },(error:any)=>{
       this.ngxService.stop();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -77,7 +77,7 @@ export class VisualizarVendaComponent implements OnInit {
   handleExcluirAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={
-      message:'excluir a venda de '+values.nome,
+      Mensagem:'excluir a venda de '+values.nome,
       confirmation:true
     };
     const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
@@ -94,13 +94,13 @@ export class VisualizarVendaComponent implements OnInit {
     this.vendaService.excluir(id).subscribe((response:any)=>{
       this.ngxService.stop();
       this.tableData();
-      this.responseMessage = response?.message;
+      this.responseMessage = response?.Mensagem;
       this.snackbarService.openSnackBar(this.responseMessage,"success");
     },(error:any)=>{
       this.ngxService.stop();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;

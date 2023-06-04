@@ -53,8 +53,8 @@ export class ProdutoComponent implements OnInit {
       this.categorias = response;
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -85,18 +85,18 @@ export class ProdutoComponent implements OnInit {
     this.produtoService.add(data).subscribe((response:any)=>{
       this.dialogRef.close();
       this.onAddProduto.emit();
-      this.responseMessage = response.message;
+      this.responseMessage = response.Mensagem;
       this.snackbarService.openSnackBar(this.responseMessage, "success");
     },(error)=>{
       this.dialogRef.close();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-    //  this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
   }
 
@@ -114,24 +114,19 @@ export class ProdutoComponent implements OnInit {
     this.produtoService.editar(data).subscribe((response:any)=>{
       this.dialogRef.close();
       this.onEditProduto.emit();
-      this.responseMessage = response.message;
+      this.responseMessage = response.Mensagem;
       this.snackbarService.openSnackBar(this.responseMessage, "success");
     },(error)=>{
       this.dialogRef.close();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-    //  this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
   }
 
-  //Resposavel por atualizar a página.
-
-  refresh(): void {
-    window.location.reload();
-}
 }

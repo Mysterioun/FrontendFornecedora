@@ -15,33 +15,29 @@
         <div fxFlex fxLayout="column">
             <div fxLayout="row wrap">
 
-        
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Nome</mat-label>
-                    <input matInput id="nome" formControlName="nome" required readonly>
+                    <input matInput id="nome" formControlName="nome" readonly>
                     <mat-error
                         *ngIf="administrarPedidoForm.controls.nome.touched && administrarPedidoForm.controls.nome.invalid">
-                        <span *ngIf="administrarPedidoForm.controls.nome.errors.required">Espaço
-                            Obrigatório</span>
+                        <span *ngIf="administrarPedidoForm.controls.nome.errors.required">Espaço Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.nome.errors.pattern">Dados Inválidos</span>
                     </mat-error>
                 </mat-form-field>
-                
+
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Email</mat-label>
-                    <input matInput id="email" formControlName="email" required readonly>
+                    <input matInput id="email" formControlName="email" readonly>
                     <mat-error
                         *ngIf="administrarPedidoForm.controls.email.touched && administrarPedidoForm.controls.email.invalid">
-                        <span *ngIf="administrarPedidoForm.controls.email.errors.required">Espaço
-                            Obrigatório</span>
+                        <span *ngIf="administrarPedidoForm.controls.email.errors.required">Espaço Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.email.errors.pattern">Dados Inválidos</span>
                     </mat-error>
                 </mat-form-field>
-               
 
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Numero de Contato</mat-label>
-                    <input matInput id="numeroContato" formControlName="numeroContato" required readonly>
+                    <input matInput id="numeroContato" formControlName="numeroContato" readonly>
                     <mat-error
                         *ngIf="administrarPedidoForm.controls.numeroContato.touched && administrarPedidoForm.controls.numeroContato.invalid">
                         <span *ngIf="administrarPedidoForm.controls.numeroContato.errors.required">Espaço
@@ -58,7 +54,8 @@
                         <mat-option value="Cartao Credito">Cartão de Crédito</mat-option>
                         <mat-option value="Cartao Debito">Cartão de Débito</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="administrarPedidoForm.controls.metodoPagamento.touched && administrarPedidoForm.controls.metodoPagamento.invalid">
+                    <mat-error
+                        *ngIf="administrarPedidoForm.controls.metodoPagamento.touched && administrarPedidoForm.controls.metodoPagamento.invalid">
                         <span *ngIf="administrarPedidoForm.controls.metodoPagamento.errors.required">Espaço
                             Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.metodoPagamento.errors.pattern">Dados
@@ -73,7 +70,7 @@
 
 <mat-card>
 
-<b><span>Escolha o Produto</span></b>
+    <b><span>Escolha o Produto</span></b>
 
     <form [formGroup]="administrarPedidoForm">
         <div fxFlex fxLayout="column">
@@ -99,7 +96,8 @@
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Preço</mat-label>
                     <input matInput formControlName="preco" required readonly>
-                    <mat-error *ngIf="administrarPedidoForm.controls.preco.touched && administrarPedidoForm.controls.preco.invalid">
+                    <mat-error
+                        *ngIf="administrarPedidoForm.controls.preco.touched && administrarPedidoForm.controls.preco.invalid">
                         <span *ngIf="administrarPedidoForm.controls.preco.errors.required">Espaço Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.preco.errors.pattern">Dados Inválidos</span>
                     </mat-error>
@@ -108,8 +106,10 @@
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Quantidade</mat-label>
                     <input matInput formControlName="quantidade" required (keyup)="setQuantidade($event)" #input>
-                    <mat-error *ngIf="administrarPedidoForm.controls.quantidade.touched && administrarPedidoForm.controls.quantidade.invalid">
-                        <span *ngIf="administrarPedidoForm.controls.quantidade.errors.required">Espaço Obrigatório</span>
+                    <mat-error
+                        *ngIf="administrarPedidoForm.controls.quantidade.touched && administrarPedidoForm.controls.quantidade.invalid">
+                        <span *ngIf="administrarPedidoForm.controls.quantidade.errors.required">Espaço
+                            Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.quantidade.errors.pattern">Dados Inválidos</span>
                     </mat-error>
                 </mat-form-field>
@@ -117,7 +117,8 @@
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Total</mat-label>
                     <input matInput formControlName="total" required readonly>
-                    <mat-error *ngIf="administrarPedidoForm.controls.total.touched && administrarPedidoForm.controls.total.invalid">
+                    <mat-error
+                        *ngIf="administrarPedidoForm.controls.total.touched && administrarPedidoForm.controls.total.invalid">
                         <span *ngIf="administrarPedidoForm.controls.total.errors.required">Espaço Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.total.errors.pattern">Dados Inválidos</span>
                     </mat-error>
