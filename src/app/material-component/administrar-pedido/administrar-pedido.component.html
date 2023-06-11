@@ -15,6 +15,7 @@
         <div fxFlex fxLayout="column">
             <div fxLayout="row wrap">
 
+
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Nome</mat-label>
                     <input matInput id="nome" formControlName="nome" readonly>
@@ -96,9 +97,7 @@
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Preço</mat-label>
                     <input matInput formControlName="preco" required readonly>
-                    <span matPrefix>R$&nbsp;</span>
-                    <mat-error
-                        *ngIf="administrarPedidoForm.controls.preco.touched && administrarPedidoForm.controls.preco.invalid">
+                    <mat-error *ngIf="administrarPedidoForm.controls.preco.touched && administrarPedidoForm.controls.preco.invalid">
                         <span *ngIf="administrarPedidoForm.controls.preco.errors.required">Espaço Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.preco.errors.pattern">Dados Inválidos</span>
                     </mat-error>
@@ -118,9 +117,7 @@
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Total</mat-label>
                     <input matInput formControlName="total" required readonly>
-                    <span matPrefix>R$&nbsp;</span>
-                    <mat-error
-                        *ngIf="administrarPedidoForm.controls.total.touched && administrarPedidoForm.controls.total.invalid">
+                    <mat-error *ngIf="administrarPedidoForm.controls.total.touched && administrarPedidoForm.controls.total.invalid">
                         <span *ngIf="administrarPedidoForm.controls.total.errors.required">Espaço Obrigatório</span>
                         <span *ngIf="administrarPedidoForm.controls.total.errors.pattern">Dados Inválidos</span>
                     </mat-error>

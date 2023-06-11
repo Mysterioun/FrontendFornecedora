@@ -96,13 +96,14 @@ export class ProdutoComponent implements OnInit {
     }, (error) => {
       this.dialogRef.close();
       console.log(error);
-      if (error.error?.Mensagem) {
-        this.responseMessage = error.error?.Mensagem;
-      } else {
+      if(error.error?.message){
+        this.responseMessage = error.error?.message;
+      }
+      else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-    });
+    //  this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+    })
   }
   
 
