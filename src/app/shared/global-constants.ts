@@ -6,9 +6,9 @@ export class GlobalConstants{
 
     public static acessoNaoAutorizado: string = "Você não possui autorização para acessar essa pagina.";
 
-    public static produtoExisteErro: string = "Produto já existe!";
+    public static produtoExisteErro: string = "Produto já foi adicionado!";
 
-    public static produtoAdicionado: string = "Produto adicionado com sucesso";
+    public static produtoAdicionado: string = "Produto adicionado com sucesso.";
 
 
     //Regex

@@ -26,6 +26,7 @@
                 <mat-form-field appearance="standard" fxFlex>
                     <mat-label>Preço</mat-label>
                     <input matInput formControlName="preco" required>
+                    <span matPrefix>R$&nbsp;</span>
                     <mat-error *ngIf="produtoForm.controls.preco.touched && produtoForm.controls.preco.invalid">
                         <span *ngIf="produtoForm.controls.preco.errors.required">Esse espaço é obrigatório.</span>
                         <span *ngIf="produtoForm.controls.preco.errors.pattern">Dado inválido.</span>
@@ -57,7 +58,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" (click)="refresh()" [disabled]="!(produtoForm.valid && produtoForm.dirty)">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()" [disabled]="!(produtoForm.valid && produtoForm.dirty)">
         <mat-icon>save</mat-icon>{{action}}
     </button>
     <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon>Fechar</button>

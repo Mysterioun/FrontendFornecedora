@@ -43,7 +43,7 @@ export class AdministrarPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.ngxService.start();
     this.getCategorias();
-    this.getUsuarioPeloId(6);
+    this.getUsuarioLogado(); 
     this.administrarPedidoForm = this.formBuilder.group({
       nome:[null, [Validators.required,Validators.pattern(GlobalConstants.nomeRegex)]],
       email: [null, [Validators.required,Validators.pattern(GlobalConstants.emailRegex)]],
@@ -66,8 +66,8 @@ export class AdministrarPedidoComponent implements OnInit {
     },(error:any)=>{
       this.ngxService.stop();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -85,8 +85,8 @@ export class AdministrarPedidoComponent implements OnInit {
       this.administrarPedidoForm.controls['total'].setValue(0);
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -104,8 +104,8 @@ export class AdministrarPedidoComponent implements OnInit {
       this.administrarPedidoForm.controls['total'].setValue(this.preco * 1);    
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -189,8 +189,8 @@ export class AdministrarPedidoComponent implements OnInit {
       this.totalAmount = 0;
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -217,23 +217,23 @@ export class AdministrarPedidoComponent implements OnInit {
   }
 
   //Essa função é responsável por recuperar os dados do usuário logado.
-  getUsuarioPeloId(id: any){
-    this.usuarioService.getPeloId(id).subscribe((response:any)=>{
+  getUsuarioLogado(){
+    this.usuarioService.getUsuarioLogado().subscribe((response:any)=>{
       this.usuario = response;
       this.administrarPedidoForm.controls['nome'].setValue(this.usuario.nome);
       this.administrarPedidoForm.controls['email'].setValue(this.usuario.email);
       this.administrarPedidoForm.controls['numeroContato'].setValue(this.usuario.numeroContato);
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
       this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
     })
-
+  
   }
 
 }

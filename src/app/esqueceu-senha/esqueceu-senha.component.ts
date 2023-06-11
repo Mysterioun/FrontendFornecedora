@@ -39,18 +39,18 @@ export class EsqueceuSenhaComponent implements OnInit {
     }
     this.usuarioService.esqueceuSenha(data).subscribe((response: any)=>{
       this.ngxService.stop();
-      this.responseMessage = response?.message;
+      this.responseMessage = response?.Mensagem;
       this.dialogRef.close();
       this.snackbarService.openSnackBar(this.responseMessage,"");
     },(error)=>{
       this.ngxService.stop();
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-    //  this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     });
   }
 
