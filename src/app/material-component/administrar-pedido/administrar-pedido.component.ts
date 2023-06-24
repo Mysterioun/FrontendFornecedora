@@ -219,8 +219,8 @@ export class AdministrarPedidoComponent implements OnInit {
   }
 
   //Essa função é responsável por recuperar os dados do usuário logado.
-  getUsuarioLogado() {
-    this.usuarioService.getUsuarioLogado().subscribe((response:any) => {
+  getUsuarioPeloId(id: any){
+    this.usuarioService.getPeloId(id).subscribe((response:any)=>{
       this.usuario = response;
       this.administrarPedidoForm.controls['nome'].setValue(this.usuario.nome);
       this.administrarPedidoForm.controls['email'].setValue(this.usuario.email);
@@ -228,13 +228,15 @@ export class AdministrarPedidoComponent implements OnInit {
 
     }, (error:any) => {
       console.log(error);
-      if (error.error?.Mensagem) {
-        this.responseMessage = error.error?.Mensagem;
-      } else {
+      if(error.error?.message){
+        this.responseMessage = error.error?.message;
+      }
+      else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-    });
+      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+    })
+
   }
 
 }
