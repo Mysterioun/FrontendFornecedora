@@ -42,9 +42,9 @@ export class AdministrarCategoriaComponent implements OnInit {
       this.dataSource = new MatTableDataSource(response);
     },(error:any)=>{
       this.ngxService.stop();
-      console.log(error.error?.message);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      console.log(error.error?.Mensagem);
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -66,7 +66,7 @@ export class AdministrarCategoriaComponent implements OnInit {
   handleAddAction(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={
-      action: 'Add'
+      action: 'Adicionar'
     };
     dialogConfig.width = "850px";
     const dialogRef = this.dialog.open(CategoriaComponent, dialogConfig);
@@ -83,7 +83,7 @@ export class AdministrarCategoriaComponent implements OnInit {
   handleEditAction(values: any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data={
-      action: 'Edit',
+      action: 'Editar',
       data: values
     };
     dialogConfig.width = "850px";
@@ -101,7 +101,7 @@ export class AdministrarCategoriaComponent implements OnInit {
   handleExcluirAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data ={
-      message: 'excluir '+values.nome,
+      Mensagem: 'excluir '+values.nome,
       confirmation:true
     }
     const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
@@ -116,19 +116,19 @@ export class AdministrarCategoriaComponent implements OnInit {
     this.categoriaService.excluir(id).subscribe((response:any)=>{
       this.ngxService.stop();
       this.tableData();
-      this.responseMessage = response?.message;
+      this.responseMessage = response?.Mensagem;
       this.snackbarService.openSnackBar(this.responseMessage, "success");
     },(error:any)=>{
       this.ngxService.stop();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-     // this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
   }
-
+  
 }

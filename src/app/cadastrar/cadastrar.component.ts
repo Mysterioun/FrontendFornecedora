@@ -74,26 +74,22 @@ export class CadastrarComponent implements OnInit {
       this.usuarioService.cadastrar(data).subscribe((response: any) => {
         this.ngxService.stop();
         this.dialogRef.close();
-        this.responseMessage = response?.message;
+        this.responseMessage = response?.Mensagem;
         this.snackbarService.openSnackBar(this.responseMessage,"");
         this.router.navigate(['/']);
       },(error)=>{
         this.ngxService.stop();
-        if(error.error?.message){
-          this.responseMessage = error.error?.message;
+        if(error.error?.Mensagem){
+          this.responseMessage = error.error?.Mensagem;
         }
         else{
           this.responseMessage = GlobalConstants.erroGenerico;
         }
-       // this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+        this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
 
       })
   }
 
-  //Essa função é responsável por atualizar a página.
-  refresh(): void {
-    window.location.reload();
-}
 
 aplicarMascaraTelefone() {
   const telefoneInput = document.getElementById('numeroContato') as HTMLInputElement;

@@ -38,8 +38,8 @@ export class UsuarioService {
     return this.httpClient.get(this.url+"/usuario/checkToken");
   }
 
-  getPeloId(id: any){
-    return this.httpClient.get(this.url+"/usuario/getPeloId/"+id);
+  getUsuarioLogado(){
+    return this.httpClient.get(this.url+"/usuario/getUsuarioLogado/");
   }
 
 }

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 //Essa classe é responsável por verificar se o usuário está autenticado.
 export class AuthService {
+  routeGuardService: any;
 
   constructor(private router: Router) { }
 
@@ -20,4 +21,5 @@ export class AuthService {
       return true;
     }
   }
+
 }

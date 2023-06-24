@@ -19,7 +19,7 @@
                             apenas seu nome. Também é possível excluir categorias que não possuem produtos utiizando as mesmas.
                         </p>
 
-                        <button class="button" [routerLink]="['/cafe/categoria']">Ver Categoria</button>
+                        <button class="button" [routerLink]="['/fornecedora/categoria']">Ver Categoria</button>
 
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             deletar aquele produto após o usuário confirmar em "sim".
                         </p>
 
-                        <button class="button" [routerLink]="['/cafe/produto']">Ver Produto</button>
+                        <button class="button" [routerLink]="['/fornecedora/produto']">Ver Produto</button>
                     </div>
                 </div>
             </li>
@@ -60,7 +60,7 @@
                                 dados do comprador.
                             </p>
 
-                            <button class="button" [routerLink]="['/cafe/venda']">Ver Venda</button>
+                            <button class="button" [routerLink]="['/fornecedora/venda']">Ver Venda</button>
                         </div>
                     </div>
 
@@ -69,42 +69,3 @@
         </ul>
     </div>
 </div>
-
-<!-- <body>
-    <mat-card>
-        <b><span>Dashboard</span></b>
-    </mat-card>
-    <br>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <div class="container">
-                    <h2 class="title">Categorias Totais:</h2>
-                    <h2 class="title">{{data?.categoria}}</h2>
-                    <p><button class="button" [routerLink]="['/cafe/categoria']">Ver Categoria</button></p> 
-                </div>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <div class="container">
-                    <h2 class="title">Produtos Totais:</h2>
-                    <h2 class="title">{{data?.produto}}</h2>
-                    <p><button class="button" [routerLink]="['/cafe/produto']">Ver Produto</button></p> 
-                </div>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <div class="container">
-                    <h2 class="title">Vendas Totais:</h2>
-                    <h2 class="title">{{data?.venda}}</h2>
-                    <p><button class="button" [routerLink]="['/cafe/venda']">Ver Venda</button></p> 
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
--->

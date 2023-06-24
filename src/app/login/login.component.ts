@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
       this.ngxService.stop();
       this.dialogRef.close();
       localStorage.setItem('token', response.token);
-      this.router.navigate(['/cafe/dashboard']);
+      this.router.navigate(['/fornecedora/dashboard']);
     },(error)=>{
       this.ngxService.stop();
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;

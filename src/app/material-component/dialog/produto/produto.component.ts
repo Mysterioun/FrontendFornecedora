@@ -18,8 +18,8 @@ export class ProdutoComponent implements OnInit {
   onAddProduto = new EventEmitter();
   onEditProduto = new EventEmitter();
   produtoForm:any = FormGroup;
-  dialogAction:any = "Add";
-  action:any = "Add";
+  dialogAction:any = "Adicionar";
+  action:any = "Adicionar";
   responseMessage:any;
   categorias:any = [];
 
@@ -38,8 +38,8 @@ export class ProdutoComponent implements OnInit {
       descricao: [null,Validators.required]
     });
 
-    if(this.dialogData.action === "Edit"){
-      this.dialogAction = "Edit";
+    if(this.dialogData.action === "Editar"){
+      this.dialogAction = "Editar";
       this.action = "Editar";
       this.produtoForm.patchValue(this.dialogData.data);
     }
@@ -53,8 +53,8 @@ export class ProdutoComponent implements OnInit {
       this.categorias = response;
     },(error:any)=>{
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
@@ -64,7 +64,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   handleSubmit(){
-    if(this.dialogAction === "Edit"){
+    if(this.dialogAction === "Editar"){
       this.edit();
     }
     else{
@@ -73,36 +73,49 @@ export class ProdutoComponent implements OnInit {
   }
 
   //Função responsável por adicionar um produto.
-  add(){
+  add() {
     var formData = this.produtoForm.value;
+  
+    if (isNaN(formData.preco) || formData.preco <= 0) {
+      this.snackbarService.openSnackBar("O preço do produto não é válido.", GlobalConstants.error);
+      return; // Encerra a função para evitar a execução do código seguinte.
+    }
+  
     var data = {
       nome: formData.nome,
       categoriaId: formData.categoriaId,
       preco: formData.preco,
       descricao: formData.descricao
     }
-
-    this.produtoService.add(data).subscribe((response:any)=>{
+  
+    this.produtoService.add(data).subscribe((response: any) => {
       this.dialogRef.close();
       this.onAddProduto.emit();
-      this.responseMessage = response.message;
+      this.responseMessage = response.Mensagem;
       this.snackbarService.openSnackBar(this.responseMessage, "success");
-    },(error)=>{
+    }, (error) => {
       this.dialogRef.close();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
-      }
-      else{
+      if (error.error?.Mensagem) {
+        this.responseMessage = error.error?.Mensagem;
+      } else {
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-    //  this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-    })
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+    });
   }
+  
+
 
   //Função responsável por editar um produto.
   edit(){
     var formData = this.produtoForm.value;
+
+    if (isNaN(formData.preco) || formData.preco <= 0) {
+      this.snackbarService.openSnackBar("O preço do produto não é válido.", GlobalConstants.error);
+      return; // Encerra a função para evitar a execução do código seguinte.
+    }
+
     var data = {
       id: this.dialogData.data.id,
       nome: formData.nome,
@@ -114,24 +127,19 @@ export class ProdutoComponent implements OnInit {
     this.produtoService.editar(data).subscribe((response:any)=>{
       this.dialogRef.close();
       this.onEditProduto.emit();
-      this.responseMessage = response.message;
+      this.responseMessage = response.Mensagem;
       this.snackbarService.openSnackBar(this.responseMessage, "success");
     },(error)=>{
       this.dialogRef.close();
       console.log(error);
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
+      if(error.error?.Mensagem){
+        this.responseMessage = error.error?.Mensagem;
       }
       else{
         this.responseMessage = GlobalConstants.erroGenerico;
       }
-    //  this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
   }
 
-  //Resposavel por atualizar a página.
-
-  refresh(): void {
-    window.location.reload();
-}
 }
